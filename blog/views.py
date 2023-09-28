@@ -23,10 +23,10 @@ def post_detail(request, slug):
                 return redirect(request.path_info)
         else:
             comment_form = CommentForm()
-    else:
-        comment_form = None
+  else:
+    comment_form = None
 
     
-        return render(
-        request, "blog/post-detail.html", {"post": post, "comment_form": comment_form}
+  return render(
+    request, "blog/post-detail.html", {"post": post, "comment_form": comment_form}
     )
