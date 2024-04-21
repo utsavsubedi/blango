@@ -4,6 +4,9 @@ from blog.models import Post
 from django.contrib.auth import get_user_model 
 user_model = get_user_model()
 
+import logging
+logger = logging.getLogger(__name__)
+
 
 register = template.Library()
 @register.filter
@@ -51,4 +54,5 @@ def endcol():
 @register.inclusion_tag
 def recent_posts(post):
   recent_posts = Post.objects.exclude(id=post.id).order_by('-published_at')[:5]
+  logger.debug("Loaded %d recent posts for post %d", len(posts), post.pk)
   return {'title': post.title, 'posts': recent_posts}
